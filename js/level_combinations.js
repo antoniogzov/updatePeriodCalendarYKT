@@ -351,6 +351,54 @@ $(document).ready(function () {
       });
   });
 
+  $(".show_paterns").change(function () {
+    id_period_calendar = $(this).attr("id");
+    show_paterns = "0";
+    if (this.checked) {
+      show_paterns = "1";
+    }
+
+    loading();
+    $.ajax({
+      url: "php/controllers/level_combinations_controller.php",
+      method: "POST",
+      data: {
+        mod: "updateShowPaterns",
+        show_paterns: show_paterns,
+        id_period_calendar: id_period_calendar,
+      },
+    })
+      .done(function (data) {
+        Swal.close();
+        var data = JSON.parse(data);
+
+        if (data.response == true) {
+          var myToast = Toastify({
+            text: data.message,
+            duration: 3000,
+          });
+          myToast.showToast();
+        } else {
+          var myToast = Toastify({
+            text: data.message,
+            duration: 3000,
+          });
+          myToast.showToast();
+        }
+
+        //--- --- ---//
+        //--- --- ---//
+      })
+      .fail(function (message) {
+        Swal.close();
+        var myToast = Toastify({
+          text: data.message,
+          duration: 3000,
+        });
+        myToast.showToast();
+      });
+  });
+
   $(".allow_extra_exam").change(function () {
     id_period_calendar = $(this).attr("id");
     allow_extra_exam = "0";
@@ -398,7 +446,6 @@ $(document).ready(function () {
         myToast.showToast();
       });
   });
-  
 });
 
 function loading() {

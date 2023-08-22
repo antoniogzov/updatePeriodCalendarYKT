@@ -211,3 +211,36 @@ function updateAllowExtraExam()
     echo json_encode($data);
 }
 
+function updateShowPaterns()
+{
+    $value = $_POST['show_paterns'];
+    $id_period_calendar = $_POST['id_period_calendar'];
+
+
+    $queries = new Queries;
+
+    $stmt = "UPDATE iteach_grades_quantitatives.period_calendar 
+    SET show_parents = '$value'
+    WHERE id_period_calendar = $id_period_calendar";
+
+    //$last_id = $getInfoRequest['last_id'];
+    if ($queries->insertData($stmt)) {
+
+
+        //--- --- ---//
+        $data = array(
+            'response' => true,
+            'message'                => 'Se actualizó la propiedad del periodo correctamente'
+        );
+        //--- --- ---//
+    } else {
+        //--- --- ---//
+        $data = array(
+            'response' => false,
+            'message'                => 'Ocurrió un error al intentar actualizar la propiedad del periodo'
+        );
+        //--- --- ---//
+    }
+
+    echo json_encode($data);
+}

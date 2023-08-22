@@ -24,6 +24,7 @@
                                     <th scope="col">grade_closing_date</th>
                                     <th scope="col">view_student_reports</th>
                                     <th scope="col">allow_editing_grades</th>
+                                    <th scope="col">show_paterns</th>
                                     <th scope="col">allow_extra_exam</th>
                                 </tr>
                             </thead>
@@ -60,8 +61,20 @@
 
                                         </td>
                                         <td>
+                                            <?php
+                                            $checked_show_paterns = 'checked';
+                                            if ($periods_calendar->show_parents == 0) {
+                                                $checked_show_paterns = '';
+                                            } ?>
                                             <div class="form-check form-switch">
-                                                <input <?php echo ($periods_calendar->allow_extra_exam==1 ? 'checked' : '') ?> class="form-check-input allow_extra_exam" type="checkbox" id="<?= $periods_calendar->id_period_calendar ?>">
+                                                <input class="form-check-input show_paterns" type="checkbox" id="<?= $periods_calendar->id_period_calendar ?>" <?= $checked_show_paterns ?>>
+                                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input <?php echo ($periods_calendar->allow_extra_exam == 1 ? 'checked' : '') ?> class="form-check-input allow_extra_exam" type="checkbox" id="<?= $periods_calendar->id_period_calendar ?>">
                                                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                             </div>
                                         </td>
