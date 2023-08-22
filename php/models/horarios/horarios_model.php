@@ -30,7 +30,7 @@ class Horarios
     {
         include_once('php/models/petitions.php');
         $queries = new Queries;
-        $sql_sites = "SELECT DATE(start_date) AS start_date, DATE(end_date) AS end_date, DATE(grade_closing_date) AS grade_closing_date, view_student_reports, no_period, id_period_calendar, allow_editing_grades 
+        $sql_sites = "SELECT DATE(start_date) AS start_date, DATE(end_date) AS end_date, DATE(grade_closing_date) AS grade_closing_date, view_student_reports, no_period, id_period_calendar, allow_editing_grades, allow_extra_exam
         FROM iteach_grades_quantitatives.period_calendar AS percal WHERE id_level_combination = '$id_level_combination' ORDER BY no_period ASC
         ";
         $getSites = $queries->getData($sql_sites);

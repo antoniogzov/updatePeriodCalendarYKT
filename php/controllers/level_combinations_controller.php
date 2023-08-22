@@ -176,3 +176,38 @@ function updateAllowEditingGrades()
 
     echo json_encode($data);
 }
+
+function updateAllowExtraExam()
+{
+    $value = $_POST['allow_extra_exam'];
+    $id_period_calendar = $_POST['id_period_calendar'];
+
+
+    $queries = new Queries;
+
+    $stmt = "UPDATE iteach_grades_quantitatives.period_calendar 
+    SET allow_extra_exam = '$value'
+    WHERE id_period_calendar = $id_period_calendar";
+
+    //$last_id = $getInfoRequest['last_id'];
+    if ($queries->insertData($stmt)) {
+
+
+        //--- --- ---//
+        $data = array(
+            'response' => true,
+            'message'                => 'Se actualizó la propiedad del periodo correctamente'
+        );
+        //--- --- ---//
+    } else {
+        //--- --- ---//
+        $data = array(
+            'response' => false,
+            'message'                => 'Ocurrió un error al intentar actualizar la propiedad del periodo'
+        );
+        //--- --- ---//
+    }
+
+    echo json_encode($data);
+}
+

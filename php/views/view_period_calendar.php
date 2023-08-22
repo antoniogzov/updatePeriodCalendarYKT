@@ -24,6 +24,7 @@
                                     <th scope="col">grade_closing_date</th>
                                     <th scope="col">view_student_reports</th>
                                     <th scope="col">allow_editing_grades</th>
+                                    <th scope="col">allow_extra_exam</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,7 +42,7 @@
                                                 $checked_view_student_reports = '';
                                             } ?>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input view_student_reports" type="checkbox"  id="<?= $periods_calendar->id_period_calendar ?>" <?= $checked_view_student_reports ?>>
+                                                <input class="form-check-input view_student_reports" type="checkbox" id="<?= $periods_calendar->id_period_calendar ?>" <?= $checked_view_student_reports ?>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                             </div>
                                         </td>
@@ -53,10 +54,16 @@
                                                 $checked_allow_editing_grades = '';
                                             } ?>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input allow_editing_grades" type="checkbox"  id="<?= $periods_calendar->id_period_calendar ?>" <?= $checked_allow_editing_grades ?>>
+                                                <input class="form-check-input allow_editing_grades" type="checkbox" id="<?= $periods_calendar->id_period_calendar ?>" <?= $checked_allow_editing_grades ?>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                             </div>
 
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input <?php echo ($periods_calendar->allow_extra_exam==1 ? 'checked' : '') ?> class="form-check-input allow_extra_exam" type="checkbox" id="<?= $periods_calendar->id_period_calendar ?>">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

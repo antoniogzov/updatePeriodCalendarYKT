@@ -302,6 +302,7 @@ $(document).ready(function () {
         myToast.showToast();
       });
   });
+
   $(".allow_editing_grades").change(function () {
     id_period_calendar = $(this).attr("id");
     allow_editing_grades = "0";
@@ -349,6 +350,55 @@ $(document).ready(function () {
         myToast.showToast();
       });
   });
+
+  $(".allow_extra_exam").change(function () {
+    id_period_calendar = $(this).attr("id");
+    allow_extra_exam = "0";
+    if (this.checked) {
+      allow_extra_exam = "1";
+    }
+
+    loading();
+    $.ajax({
+      url: "php/controllers/level_combinations_controller.php",
+      method: "POST",
+      data: {
+        mod: "updateAllowExtraExam",
+        allow_extra_exam: allow_extra_exam,
+        id_period_calendar: id_period_calendar,
+      },
+    })
+      .done(function (data) {
+        Swal.close();
+        var data = JSON.parse(data);
+
+        if (data.response == true) {
+          var myToast = Toastify({
+            text: data.message,
+            duration: 3000,
+          });
+          myToast.showToast();
+        } else {
+          var myToast = Toastify({
+            text: data.message,
+            duration: 3000,
+          });
+          myToast.showToast();
+        }
+
+        //--- --- ---//
+        //--- --- ---//
+      })
+      .fail(function (message) {
+        Swal.close();
+        var myToast = Toastify({
+          text: data.message,
+          duration: 3000,
+        });
+        myToast.showToast();
+      });
+  });
+  
 });
 
 function loading() {
